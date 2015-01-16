@@ -84,20 +84,10 @@ jQuery(document).ready(function($) {
 ------------------------------------------------------ */  	 
 	$('input, textarea').placeholder()
 
-
-/*----------------------------------------------------*/
-/* FitText Settings
------------------------------------------------------- */
-   setTimeout( function() {
-
-	   $('h1.responsive-headline').fitText(1, { minFontSize: '40px', maxFontSize: '90px' });
-	   
-   }, 100);
-
 /*----------------------------------------------------*/
 /* Final Countdown Settings
 ------------------------------------------------------ */
-	var finalDate = '2015/05/01';
+	var finalDate = '2015/07/01';
 
 	$('div#counter').countdown(finalDate)
    	.on('update.countdown', function(event) {
@@ -108,64 +98,6 @@ jQuery(document).ready(function($) {
    										 	 '<span>%S <em>seconds</em></span>'));
 
    });  
-
-
-/*----------------------------------------------------*/
-/*	gmaps settings
-------------------------------------------------------*/
-
-   var map;
-
-   // main directions
-   map = new GMaps({
-      el: '#map', 
-      lat: 14.549072, 
-      lng: 121.046958, 
-      zoom: 14, 
-      zoomControl : true,
-      zoomControlOpt: { style : 'SMALL', position: 'TOP_LEFT' }, 
-      panControl : false, 
-      scrollwheel: false
-   });
-
-   map.drawOverlay({
-	   lat: map.getCenter().lat(),
-	   lng: map.getCenter().lng(),
-	   content: '<i class="fa fa-map-marker"></i>',
-	   verticalAlign: 'top',
-	   horizontalAlign: 'center'
-	});
-
-   // The styles below present a simplified map. 
-   // If you would like to use a normal coloured map, then please remove or comment the code below, from lines 128 to 148.
-	var mapStyles = [
-	   {
-	      featureType: "road",
-	      elementType: "geometry",
-	      stylers: [{
-	         lightness: 100
-	      }, {
-	         visibility: "simplified"
-	      }]
-	   }, {
-	      featureType: "road",
-	      elementType: "labels",
-	      stylers: [{
-	         visibility: "off"
-	      }]
-	   }
-	];
-	
-	map.setOptions({
-	   styles: mapStyles
-	});
-
-   // map.addMarker({ 
- 		// lat: map.getCenter().lat(),
-	  //  lng: map.getCenter().lng(), 
- 		// title: '5th Avenue',
-   //  	infoWindow: { content: '<p>You can add your address 1 here</p>' } 
-   // });
 
 
 /*----------------------------------------------------*/
@@ -184,34 +116,6 @@ jQuery(document).ready(function($) {
 	        window.location.hash = target;
 	    });
 	});
-
-
-/*----------------------------------------------------*/
-/* Highlight the current section in the navigation bar
-------------------------------------------------------*/
-
-	var sections = $("section");
-	var navigation_links = $("#nav-wrap a");
-
-	sections.waypoint({
-
-      handler: function(event, direction) {
-
-		   var active_section;
-
-			active_section = $(this);
-			if (direction === "up") active_section = active_section.prev();
-
-			var active_link = $('#nav-wrap a[href="#' + active_section.attr("id") + '"]');
-
-         navigation_links.parent().removeClass("current");
-			active_link.parent().addClass("current");
-
-		},
-		offset: '35%'
-
-	});
-
 
 /*----------------------------------------------------*/
 /*	Make sure that #intro height is
